@@ -1,0 +1,45 @@
+#!/bin/bash
+# install_all_hacking_tools.sh
+
+echo "MENGINSTALL SEMUA TOOLS HACKING ARCH..."
+
+# Update system
+sudo pacman -Syu
+
+# Base tools
+sudo pacman -S --noconfirm base-devel git wget curl nmap netcat
+
+# Information Gathering
+sudo pacman -S --noconfirm dnsenum dnsrecon theharvester recon-ng maltego
+
+# Vulnerability Scanners
+sudo pacman -S --noconfirm nikto wapiti sqlmap wpscan
+
+# Password Attacks
+sudo pacman -S --noconfirm hashcat john hydra crunch wordlists
+
+# Wireless
+sudo pacman -S --noconfirm aircrack-ng reaver wifite bettercap
+
+# Web Hacking
+sudo pacman -S --noconfirm gobuster ffuf commix wfuzz
+
+# Exploitation
+sudo pacman -S --noconfirm metasploit exploitdb searchsploit
+
+# Forensics
+sudo pacman -S --noconfirm binwalk foremost volatility steghide
+
+# Install yay (AUR helper)
+if ! command -v yay &> /dev/null; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cd ..
+    rm -rf yay
+fi
+
+# Install AUR tools
+yay -S --noconfirm burpsuite zaproxy empire covenant
+
+echo "INSTALLASI SELESAI!"
